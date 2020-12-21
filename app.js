@@ -1,38 +1,42 @@
-let Vehicule = function (couleur, roues, marque) {
-    this.couleur = couleur;
-    this.roues = roues;
-    this.marque = marque;
+class Vehicule {
 
-    this.demarrer = function () {
+    constructor(couleur, roues, marque) {
+        this.couleur = couleur;
+        this.roues = roues;
+        this.marque = marque;
+    }
+    demarrer() {
         console.log("Vroum vroum");
     }
-    this.arreter = function () {
+    arreter() {
         console.log("Popopo")
     }
 }
 
-let Velo = function (couleur, roues, marque, rayonRoues, typePeinture) {
-    Vehicule.call(this, couleur, roues, marque);
-    this.rayonRoues = rayonRoues;
-    this.typePeinture = typePeinture;
+class Velo extends Vehicule {
 
-    this.monter = function () {
+    constructor(couleur, roues, marque, rayonRoues, typePeinture) {
+        super(couleur, roues, marque);
+        this.rayonRoues = rayonRoues;
+        this.typePeinture = typePeinture;
+    }
+
+    monter() {
         console.log("Monte sur le vélo");
     }
 }
 
-Velo.prototype = Object.create(Vehicule.prototype);
-Velo.prototype.constructor = Velo;
+class Voiture extends Vehicule {
+    constructor(couleur, roues, marque, assurance, proprietaire) {
+        super(couleur, roues, marque);
+        this.assurance = assurance;
+        this.proprietaire = proprietaire;
+    }
 
-let Voiture = function (couleur, roues, marque, assurance, proprietaire) {
-    Vehicule.call(this, couleur, roues, marque);
-    this.assurance = assurance;
-    this.proprietaire = proprietaire;
-
-    this.passerAuCarWash = function () {
+    passerAuCarWash() {
         console.log("Pshiiii");
     }
 }
 
-Voiture.prototype = Object.create(Vehicule.prototype);
-Voiture.prototype.constructor = Voiture;
+let BMX = new Velo("rouge", "2", "BMX", "40", "chrome");
+BMX.monter();
